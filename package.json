@@ -5,11 +5,13 @@
   "workspaces": [
     "packages/figma-react",
     "packages/figma-react-cli",
-    "packages/figma-react-cra-demo"
+    "packages/figma-react-cra-demo",
+    "packages/figma-react-spellchecker"
   ],
   "scripts": {
     "start": "",
-    "sync": "node -r dotenv/config packages/figma-react-cli/src/cli VGULlnz44R0Ooe4FZKDxlhh4 packages/figma-react-cra-demo --sync",
-    "generate": "node -r dotenv/config packages/figma-react-cli/src/cli VGULlnz44R0Ooe4FZKDxlhh4 packages/figma-react-cra-demo --generate"
+    "simple": "node -r dotenv/config packages/figma-react-cli/src/cli --id VGULlnz44R0Ooe4FZKDxlhh4 --project packages/figma-react-cra-demo",
+    "simple:sync": "yarn simple --sync",
+    "simple:generate": "yarn simple --generate"
   }
 }
