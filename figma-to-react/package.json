@@ -14,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate:figma": "node -r dotenv/config main VGULlnz44R0Ooe4FZKDxlhh4"
   },
   "devDependencies": {
     "dotenv": "^5.0.1"
