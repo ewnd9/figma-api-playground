@@ -11,9 +11,11 @@
   "scripts": {
     "start": "",
     "doc:simple": "node -r dotenv/config packages/figma-react-cli/src/cli --id VGULlnz44R0Ooe4FZKDxlhh4 --project packages/figma-react-cra-demo",
-    "doc:spell": "node -r dotenv/config packages/figma-react-cli/src/cli --id zQ2akNmaUWMagyfvw6dWfT --project packages/figma-react-cra-demo",
     "doc:simple:sync": "yarn doc:simple --sync",
+    "doc:simple:save": "node -r dotenv/config packages/figma-react-cli/src/cli --id VGULlnz44R0Ooe4FZKDxlhh4 --sync --project data/simple",
     "doc:simple:generate": "yarn doc:simple --generate",
+    "doc:spell": "node -r dotenv/config packages/figma-react-cli/src/cli --id zQ2akNmaUWMagyfvw6dWfT",
+    "doc:spell:save": "node -r dotenv/config packages/figma-react-cli/src/cli --id zQ2akNmaUWMagyfvw6dWfT --sync --project data/spell",
     "doc:spell:spellcheck": "yarn doc:spell --spellcheck",
     "storybook": "node -r dotenv/config node_modules/.bin/start-storybook -p 6006",
     "build-storybook": "dotenv build-storybook"
