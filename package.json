@@ -15,16 +15,19 @@
     "doc:simple:sync": "yarn doc:simple --sync",
     "doc:simple:generate": "yarn doc:simple --generate",
     "doc:spell:spellcheck": "yarn doc:spell --spellcheck",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "node -r dotenv/config node_modules/.bin/start-storybook -p 6006",
+    "build-storybook": "dotenv build-storybook"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.7.4",
+    "@dreipol/storybook-figma-addon": "^0.0.0",
     "@storybook/addon-actions": "^5.2.7",
     "@storybook/addon-links": "^5.2.7",
     "@storybook/addons": "^5.2.7",
     "@storybook/react": "^5.2.7",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "dotenv-cli": "^3.1.0",
+    "storybook-addon-designs": "^5.1.1"
   }
 }
