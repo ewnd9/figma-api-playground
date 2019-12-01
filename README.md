@@ -1,6 +1,14 @@
-# figma-api-demo
+# figma-api-playground
 
-This project contains demo apps using the Figma API. They are
-meant to demonstrate how to get started with the various aspects of the API.
+## Install
 
-See the developer documentation at http://www.figma.com/developers/docs
+```sh
+$ yarn install
+$ cp .env.example .env # add token
+```
+
+## Usage
+
+```sh
+$ yarn start
+```

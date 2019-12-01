@@ -1,11 +1,12 @@
-require('dotenv').config()
 const fetch = require('node-fetch');
 const fs = require('fs');
-const figma = require('./lib/figma');
+const path = require('path');
+const figma = require('figma-react');
 
 const headers = new fetch.Headers();
 const componentList = [];
 let devToken = process.env.DEV_TOKEN;
+let cwd = process.cwd();
 
 if (process.argv.length < 3) {
   console.log('Usage: node setup.js <file-key> [figma-dev-token]');
@@ -13,13 +14,14 @@ if (process.argv.length < 3) {
 }
 
 if (process.argv.length > 3) {
-  devToken = process.argv[3];
+  cwd = path.resolve(process.argv[3]);
 }
 
 headers.append('X-Figma-Token', devToken);
 
 const fileKey = process.argv[2];
 const baseUrl = 'https://api.figma.com';
+console.log(fileKey, cwd, devToken)
 
 const vectorMap = {};
 const vectorList = [];
@@ -136,7 +138,7 @@ async function main() {
     const child = canvas.children[i]
     if (child.name.charAt(0) === '#' && child.visible !== false) {
       const child = canvas.children[i];
-      figma.createComponent(child, images, componentMap);
+      figma.createComponent(child, images, componentMap, cwd);
       nextSection += `export class Master${child.name.replace(/\W+/g, "")} extends PureComponent {\n`;
       nextSection += "  render() {\n";
       nextSection += `    return <div className="master" style={{backgroundColor: "${figma.colorString(child.backgroundColor)}"}}>\n`;
@@ -170,7 +172,7 @@ async function main() {
   contents += "  return null;\n}\n\n";
   contents += nextSection;
 
-  const path = "./src/figmaComponents.js";
+  const path = `${cwd}/src/figmaComponents.js`;
   fs.writeFile(path, contents, function(err) {
     if (err) console.log(err);
     console.log(`wrote ${path}`);

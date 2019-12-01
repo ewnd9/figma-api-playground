@@ -100,7 +100,7 @@ function expandChildren(node, parent, minChildren, maxChildren, centerChildren, 
   return added - offset;
 }
 
-const createComponent = (component, imgMap, componentMap) => {
+const createComponent = (component, imgMap, componentMap, cwd) => {
   const name = 'C' + component.name.replace(/\W+/g, '');
   const instance = name + component.id.replace(';', 'S').replace(':', 'D');
 
@@ -109,7 +109,7 @@ const createComponent = (component, imgMap, componentMap) => {
   print(`  render() {`, '');
   print(`    return (`, '');
 
-  const path = `src/components/${name}.js`;
+  const path = `${cwd}/src/components/${name}.js`;
 
   if (!fs.existsSync(path)) {
     const componentSrc = `import React, { PureComponent } from 'react';
@@ -370,7 +370,7 @@ export class ${name} extends PureComponent {
 
     if (node.id !== component.id && node.name.charAt(0) === '#') {
       print(`    <C${node.name.replace(/\W+/g, '')} {...this.props} nodeId="${node.id}" />`, indent);
-      createComponent(node, imgMap, componentMap);
+      createComponent(node, imgMap, componentMap, cwd);
     } else if (node.type === 'VECTOR') {
       print(`    <div className="vector" dangerouslySetInnerHTML={{__html: \`${imgMap[node.id]}\`}} />`, indent);
     } else {

@@ -1,0 +1,14 @@
+{
+  "name": "figma-api-playground",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/figma-react",
+    "packages/figma-react-cli",
+    "packages/figma-react-cra-demo"
+  ],
+  "scripts": {
+    "start": "",
+    "sync": "node -r dotenv/config packages/figma-react-cli/src/cli VGULlnz44R0Ooe4FZKDxlhh4 packages/figma-react-cra-demo"
+  }
+}
