@@ -4,5 +4,8 @@
   "private": true,
   "bin": {
     "figma-react": "src/cli.js"
+  },
+  "dependencies": {
+    "minimist": "^1.2.0"
   }
 }

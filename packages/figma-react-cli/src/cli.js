@@ -2,26 +2,21 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
 const figma = require('figma-react');
+const argv = require('minimist')(process.argv.slice(2), { string: '_' });
 
 const headers = new fetch.Headers();
-const componentList = [];
-let devToken = process.env.DEV_TOKEN;
-let cwd = process.cwd();
+const devToken = process.env.DEV_TOKEN;
+const fileKey = argv._[0];
+const cwd = argv._[1] && path.resolve(argv._[1]) || process.cwd();
 
-if (process.argv.length < 3) {
-  console.log('Usage: node setup.js <file-key> [figma-dev-token]');
+if (!fileKey) {
+  console.log('Usage: figma-react <file-key> [cwd]');
   process.exit(0);
-}
-
-if (process.argv.length > 3) {
-  cwd = path.resolve(process.argv[3]);
 }
 
 headers.append('X-Figma-Token', devToken);
 
-const fileKey = process.argv[2];
 const baseUrl = 'https://api.figma.com';
-console.log(fileKey, cwd, devToken)
 
 const vectorMap = {};
 const vectorList = [];
@@ -88,9 +83,14 @@ function preprocessTree(node) {
   }
 }
 
-async function main() {
-  let resp = await fetch(`${baseUrl}/v1/files/${fileKey}`, {headers});
-  let data = await resp.json();
+async function sync() {
+  const resp = await fetch(`${baseUrl}/v1/files/${fileKey}`, {headers});
+  const data = await resp.json();
+  fs.writeFileSync(`${cwd}/figma.json`, JSON.stringify(data));
+}
+
+async function generate() {
+  let data = JSON.parse(fs.readFileSync(`${cwd}/figma.json`, 'utf-8'));
 
   const doc = data.document;
   const canvas = doc.children[0];
@@ -177,6 +177,14 @@ async function main() {
     if (err) console.log(err);
     console.log(`wrote ${path}`);
   });
+}
+
+async function main() {
+  if (argv.sync) {
+    await sync();
+  } else if (argv.generate) {
+    await generate();
+  }
 }
 
 main().catch((err) => {

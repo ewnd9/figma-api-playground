@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "start": "",
-    "sync": "node -r dotenv/config packages/figma-react-cli/src/cli VGULlnz44R0Ooe4FZKDxlhh4 packages/figma-react-cra-demo"
+    "sync": "node -r dotenv/config packages/figma-react-cli/src/cli VGULlnz44R0Ooe4FZKDxlhh4 packages/figma-react-cra-demo --sync",
+    "generate": "node -r dotenv/config packages/figma-react-cli/src/cli VGULlnz44R0Ooe4FZKDxlhh4 packages/figma-react-cra-demo --generate"
   }
 }
