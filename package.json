@@ -10,8 +10,10 @@
   ],
   "scripts": {
     "start": "",
-    "simple": "node -r dotenv/config packages/figma-react-cli/src/cli --id VGULlnz44R0Ooe4FZKDxlhh4 --project packages/figma-react-cra-demo",
-    "simple:sync": "yarn simple --sync",
-    "simple:generate": "yarn simple --generate"
+    "doc:simple": "node -r dotenv/config packages/figma-react-cli/src/cli --id VGULlnz44R0Ooe4FZKDxlhh4 --project packages/figma-react-cra-demo",
+    "doc:spell": "node -r dotenv/config packages/figma-react-cli/src/cli --id zQ2akNmaUWMagyfvw6dWfT --project packages/figma-react-cra-demo",
+    "doc:simple:sync": "yarn doc:simple --sync",
+    "doc:simple:generate": "yarn doc:simple --generate",
+    "doc:spell:spellcheck": "yarn doc:spell --spellcheck"
   }
 }
